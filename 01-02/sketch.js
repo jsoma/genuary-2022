@@ -7,7 +7,7 @@ https://surma.dev/things/ditherpunk/
 let img;
 
 function preload() {
-  img = loadImage('dither.jpg');
+  img = loadImage('original.jpg');
 }
 
 function setup() {
@@ -56,10 +56,6 @@ function draw() {
   ]
 
   const thresh = bayer4x4;
-
-  function getBayer() {
-    
-  }
 
   // https://stackoverflow.com/questions/12422407/monochrome-dithering-in-javascript-bayer-atkinson-floyd-steinberg
   for (let i = 0; i < width * height; i++) {
