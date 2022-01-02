@@ -81,9 +81,9 @@ function draw() {
     let bayerThresh = thresh[x % thresh.length][y % thresh.length];
 
     if (getBrightness(i) > 1 - bayerThresh) {
-      setPixel(i, color("white"));
+      setPixel(i, color("lightcyan"));
     } else {
-      setPixel(i, color("black"));
+      setPixel(i, color("darkmagenta"));
     }
   }
 
