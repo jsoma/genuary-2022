@@ -8,6 +8,8 @@ const rows = 100;
 
 function setup() {
   createCanvas(600, 600);
+  // hue is normally 0-360, this makes it 0-100
+  // along with saturation and brightness
   colorMode(HSB, 100);
   noLoop();
 }
@@ -18,6 +20,7 @@ function draw() {
   noStroke();
   for(let i = 0; i < cols; i++) {
     for(let j = 0; j < rows; j++) {
+      // use map to give a margin around graphic
       const x = map(i, 0, cols, margin, width - margin);
       const y = map(j, 0, rows, margin, height - margin);
       const n = noise(i * 0.05, j * 0.05);

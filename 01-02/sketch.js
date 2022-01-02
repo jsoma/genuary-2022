@@ -10,18 +10,36 @@ function preload() {
   img = loadImage("original.jpg");
 }
 
+/*
+  pixelDensity(1) because it's so much easier
+  than dealing with retina displays. I think if I used it
+  I wouldneed to use .get(x, y) instead of pixels[])
+*/
+
 function setup() {
   pixelDensity(1);
   createCanvas(600, 600);
   noLoop();
 }
 
+/*
+  pixels aren't stored as a 2d array, it's just one
+  big array! It's auto-populated after you run loadPixels().
+  As a result, we live with things like:
+    R = pixels[i]
+    G = pixels[i+1]
+    B = pixels[i+2]
+    A = pixels[i+3]
+*/
+
 function getColor(i) {
+  // If we want pixel n, it starts from nth * 4 bc RGBA
   const actual = 4 * i;
   return color(pixels[actual], pixels[actual + 1], pixels[actual + 2]);
 }
 
 function getBrightness(i) {
+  // Brightness is 0-100 but I'd prefer 0-1
   return brightness(getColor(i)) / 100;
 }
 
@@ -37,6 +55,9 @@ function draw() {
   // https://stackoverflow.com/questions/54707586/getting-pixel-values-of-images-in-p5js
   loadPixels();
 
+  // Doing this manually was painful
+  // but you can see the nice versions
+  // at https://en.wikipedia.org/wiki/Ordered_dithering#Pre-calculated_threshold_maps
   const mult_2x2 = 1 / 4;
   const bayer2x2 = [
     [0 * mult_2x2, 2 * mult_2x2],
